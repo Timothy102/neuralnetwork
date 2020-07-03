@@ -1,5 +1,5 @@
-//Package network implements the simple neural network  architecture.
-package network
+//Package neuralnetwork implements the simple neural network  architecture.
+package neuralnetwork
 
 import "github.com/timothy102/matrix"
 
