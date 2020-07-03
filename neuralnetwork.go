@@ -1,3 +1,4 @@
+//Package neuralnetwork implements the simple neural network  architecture.
 package main
 
 import "github.com/timothy102/matrix"
