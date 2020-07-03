@@ -10,7 +10,6 @@ type Network struct {
 	learningRate                         float64
 }
 
-//Package network implements the simple neural network  architecture.
 
 //InitNetwork initializes the network with the number of nodes and the learning rate.
 func InitNetwork(inputNodes, hiddenNodes, outputNodes int, lr float64) Network {
@@ -89,8 +88,3 @@ func (n *Network) Predict(inputArray []float64) []float64 {
 	return output.ToArray()
 }
 
-/* TODO :
--> fix matrix.Multiply
--> losses, optimizers, activation functions
--> linear regression
-*/
