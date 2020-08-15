@@ -10,7 +10,6 @@ type Network struct {
 	learningRate                         float64
 }
 
-
 //InitNetwork initializes the network with the number of nodes and the learning rate.
 func InitNetwork(inputNodes, hiddenNodes, outputNodes int, lr float64) Network {
 	weightsIh := matrix.RandomValuedMatrix(hiddenNodes, inputNodes)
@@ -87,4 +86,3 @@ func (n *Network) Predict(inputArray []float64) []float64 {
 	output.MapFunc(matrix.Sigmoid)
 	return output.ToArray()
 }
-
