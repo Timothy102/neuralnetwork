@@ -1,7 +1,8 @@
-//Package neuralnetwork implements the simple neural network  architecture.
-package neuralnetwork
+package main
 
-import "github.com/timothy102/matrix"
+import (
+	"github.com/timothy102/matrix"
+)
 
 //Network defines the neural network.
 type Network struct {
@@ -9,6 +10,8 @@ type Network struct {
 	weightsIh, weightsHo, biasO, biasH   matrix.Matrix
 	learningRate                         float64
 }
+
+//Package network implements the simple neural network  architecture.
 
 //InitNetwork initializes the network with the number of nodes and the learning rate.
 func InitNetwork(inputNodes, hiddenNodes, outputNodes int, lr float64) Network {
