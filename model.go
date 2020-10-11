@@ -1,3 +1,4 @@
+//Package neuralnetwork implements the machine learning library similar to keras architecture.
 package neuralnetwork
 
 import (
@@ -7,13 +8,15 @@ import (
 
 //Model implements the model architecure.
 type Model struct {
-	layers            []Layer
-	name              string
-	optimizer         Optimizer
-	loss              func([]float64, []float64) float64
-	lossValues        []float64
-	training_duration time.Duration
-	modelMetrics      []Metrics
+	layers                 []Layer
+	name                   string
+	optimizer              Optimizer
+	loss                   func([]float64, []float64) float64
+	lossValues             []float64
+	trainingDuration       time.Duration
+	modelMetrics           []Metrics
+	trainDataX, trainDataY []float64
+	callbacks              []Callback
 }
 
 //Metrics is an interface that requires two functions, Measure and Name and is passed to the model.compile method.
@@ -84,15 +87,15 @@ func (m *Model) Train(trainX, trainY []float64, epochs int) map[string]float64 {
 			m.lossValues = append(m.lossValues, lossValue)
 			m.optimizer.ApplyGradients()
 		}
-		avg := MeanValue(m.lossValues)
+		avg := meanValue(m.lossValues)
 		for _, met := range m.modelMetrics {
 			metricsValues[met.Name()] = met.Measure(m.Predict(trainX), trainY)
 		}
 		fmt.Printf("Epoch: %d		Loss:%.4f\n", i, avg)
 	}
 	endTime := time.Now()
-	m.training_duration = endTime.Sub(startTime)
-	fmt.Printf("Training duration: %s\n", m.training_duration.String())
+	m.trainingDuration = endTime.Sub(startTime)
+	fmt.Printf("Training duration: %s\n", m.trainingDuration.String())
 	return metricsValues
 }
 

@@ -19,17 +19,17 @@ type Layer interface {
 
 //DenseLayer defines a fully connected layer.
 type DenseLayer struct {
-	units              int
-	inputs, outputs    []float64
-	weights            Weights
-	biases             Biases
-	trainable          bool
-	name               string
-	kernel_regularizer func([]float64) []float64
-	bias_regularizer   func([]float64) []float64
-	Activation         func(float64) float64
-	KernelInit         func(float64) float64
-	BiasInit           func(float64) float64
+	units             int
+	inputs, outputs   []float64
+	weights           Weights
+	biases            Biases
+	trainable         bool
+	name              string
+	kernelRegularizer func([]float64) []float64
+	biasRegularizer   func([]float64) []float64
+	Activation        func(float64) float64
+	KernelInit        func(float64) float64
+	BiasInit          func(float64) float64
 }
 
 //Weights struct with the actual kernels and the kernel initializer function.
@@ -45,19 +45,19 @@ type Biases struct {
 }
 
 type shape struct {
-	input_shape []float64
+	inputShape []float64
 }
 
 //WeightInit used for weight initialization. Already defined at the initialization of the dense layer.
-func WeightInit(a, b int, kernel_init func(float64) float64) Weights {
-	w := matrix.RandomValuedMatrix(a, b).MapFunc(kernel_init)
-	return Weights{kernels: w, KernelInit: kernel_init}
+func WeightInit(a, b int, kernelInit func(float64) float64) Weights {
+	w := matrix.RandomValuedMatrix(a, b).MapFunc(kernelInit)
+	return Weights{kernels: w, KernelInit: kernelInit}
 }
 
 //BiasInit used for bias initialization. Already defined at the initialization of the dense layer.
-func BiasInit(a int, bias_init func(float64) float64) Biases {
-	bs := matrix.RandomVector(a).Map(bias_init)
-	return Biases{bs: bs, BiasInit: bias_init}
+func BiasInit(a int, biasInit func(float64) float64) Biases {
+	bs := matrix.RandomVector(a).Map(biasInit)
+	return Biases{bs: bs, BiasInit: biasInit}
 }
 
 //Dense fully connected layer initializer
@@ -108,7 +108,7 @@ func (d *DenseLayer) SetBiases(bs matrix.Vector) {
 	d.biases.bs = bs
 }
 
-//Input layer, much like the keras one.
+//InputLayer layer, much like the keras one.
 type InputLayer struct {
 	inputs, outputs []float64
 	weights         Weights
@@ -117,7 +117,7 @@ type InputLayer struct {
 	name            string
 }
 
-//Input
+//Input layer
 func Input(inputs []float64) InputLayer {
 	weights := WeightInit(len(inputs), 1, HeUniform)
 	biases := BiasInit(len(inputs), ZeroInitializer)
@@ -135,7 +135,7 @@ func (i *InputLayer) Call() []float64 {
 	return vec.Slice()
 }
 
-//BatchNormLayer
+//BatchNormLayer layer
 type BatchNormLayer struct {
 	inputs, outputs      []float64
 	beta, epsilon, alpha float64
@@ -148,11 +148,11 @@ func BatchNorm(inputs []float64) BatchNormLayer {
 	return BatchNormLayer{inputs: inputs}
 }
 
-//BatchNorm call
+//Call for the batch normalization layer
 func (bn *BatchNormLayer) Call() []float64 {
 	outputs := make([]float64, len(bn.inputs))
 	variance := Variance(bn.inputs)
-	mean := MeanValue(bn.inputs)
+	mean := meanValue(bn.inputs)
 	for _, x := range bn.inputs {
 		newX := (x - mean) / math.Sqrt(variance+bn.epsilon)
 		outputs = append(outputs, bn.alpha*newX+bn.beta)
@@ -161,19 +161,21 @@ func (bn *BatchNormLayer) Call() []float64 {
 	return outputs
 }
 
+//Variance returns the variance
 func Variance(fls []float64) float64 {
 	var sum float64
 	for _, f := range fls {
-		sum += math.Pow(f-MeanValue(fls), 2)
+		sum += math.Pow(f-meanValue(fls), 2)
 	}
 	return sum / float64(len(fls))
 }
-func MeanValue(fls []float64) float64 {
+
+func meanValue(fls []float64) float64 {
 	mean := sum(fls) / float64(len(fls))
 	return mean
 }
 
-//Dropout
+//DropoutLayer layer
 type DropoutLayer struct {
 	inputs []float64
 	rate   float64
@@ -185,7 +187,7 @@ func Dropout(inputs []float64, rate float64) DropoutLayer {
 
 }
 
-//Dropout call
+//Call for the dropout layer
 func (dr *DropoutLayer) Call() []float64 {
 	weightCount := dr.rate * float64(len(dr.inputs))
 	for i := int(weightCount); i > 0; i-- {
@@ -196,7 +198,7 @@ func (dr *DropoutLayer) Call() []float64 {
 	return dr.inputs
 }
 
-//SoftmaxLayer
+//SoftmaxLayer layer
 type SoftmaxLayer struct {
 	inputs, outputs []float64
 	classes         int
@@ -223,7 +225,7 @@ func (s *SoftmaxLayer) Call() []float64 {
 	return outputs
 }
 
-//FlattenLayer
+//FlattenLayer layer
 type FlattenLayer struct {
 	inputs, outputs []float64
 	name            string
@@ -247,12 +249,12 @@ func HeUniform(x float64) float64 {
 	return down + rand.Float64()*(upper-down)
 }
 
-//ZeroInitializer
+//ZeroInitializer returns the zeros initializer for the bias initialization
 func ZeroInitializer(x float64) float64 {
 	return 0
 }
 
-//OnesInitializer
+//OnesInitializer returns the ones initializer for the bias initialization
 func OnesInitializer(x float64) float64 {
 	return 1
 }

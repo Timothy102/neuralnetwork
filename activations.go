@@ -8,9 +8,13 @@ import (
 func Sigmoid(x float64) float64 {
 	return 1 / (1 + math.Exp(-x))
 }
+
+//SigmoidPrime is the derivative of the Sigmoid
 func SigmoidPrime(x float64) float64 {
 	return Sigmoid(x) * (1 - Sigmoid(x))
 }
+
+//Tanh returns the tanh activation function.
 func Tanh(x float64) float64 {
 	return math.Tanh(x)
 }
@@ -33,7 +37,7 @@ func findMax(fls []float64) float64 {
 	return max
 }
 
-//0.7 is a parameter that should be above 0
+//Elu is an activation function. 0.7 is a parameter that should be above 0
 func Elu(x float64) float64 {
 	if x > 0 {
 		return x
@@ -41,7 +45,7 @@ func Elu(x float64) float64 {
 	return 0.7 * (math.Exp(x) - 1)
 }
 
-//beta is a parameter that should be above 0
+//Swish activation function. Beta is a parameter that should be above 0
 func Swish(x float64) float64 {
 	beta := 0.8
 	return x * Sigmoid(beta*x)
