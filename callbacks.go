@@ -49,7 +49,7 @@ func (m *Model) CsvLogger(filename string) error {
 		return fmt.Errorf("could not create file with path %s:%v", filename, err)
 	}
 	writer := csv.NewWriter(f)
-	writer.Write(m.trainingLog)
+	writer.Write(m.trainingLog.logs)
 	return nil
 }
 

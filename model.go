@@ -17,6 +17,9 @@ type Model struct {
 	modelMetrics           []Metrics
 	trainDataX, trainDataY []float64
 	callbacks              []Callback
+	training               bool
+	learningRate           float64
+	trainingLog            TrainingLog
 }
 
 //Metrics is an interface that requires two functions, Measure and Name and is passed to the model.compile method.
@@ -28,6 +31,11 @@ type Metrics interface {
 //Optimizer interface requires an ApplyGradients function. Pass it to the model compilation.
 type Optimizer interface {
 	ApplyGradients()
+}
+
+//TrainingLog returns model's log
+type TrainingLog struct {
+	logs []string
 }
 
 //Sequential returns a model given layers and a name.
@@ -44,6 +52,11 @@ func (m *Model) Add(layer Layer) *Model {
 //GetLayerByIndex returns the ith layer.
 func (m *Model) GetLayerByIndex(index int) Layer {
 	return m.layers[index]
+}
+
+//GetMetricsByIndex returns the index's model metric
+func (m *Model) GetMetricsByIndex(index int) Metrics {
+	return m.modelMetrics[index]
 }
 
 //GetLayerByName returns the layer given its name.

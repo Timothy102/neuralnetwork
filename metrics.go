@@ -13,7 +13,7 @@ func JaccardIndex(predicted, actual []float64) int {
 	return sum / len(predicted)
 }
 
-//F1Score
+//F1Score returns the F1 Score
 func F1Score(predicted, actual []float64) int {
 	return 2 * (Precision(predicted, actual) * Recall(predicted, actual)) / (Precision(predicted, actual) + Recall(predicted, actual))
 }
