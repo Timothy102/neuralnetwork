@@ -4,6 +4,7 @@ Neuralnetwork is a hands-on approach to machine learning in Go. For those of you
 
 ## Installation
 '''
+
 go get -u github.com/timothy102/neuralnetwork
 import net "github.com/timothy102/neuralnetwork 
 
