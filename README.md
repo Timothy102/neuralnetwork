@@ -1,4 +1,4 @@
-# neuralnetwork
+# NNGo: Neural Network framework in Golang built from scratch
 
 Neuralnetwork is a hands-on approach to machine learning in Go. For those of you, who have tried Tensorflow for Go or keras, it will fit you perfectly. The framework is still in development, there is still a lot to be implemented. Appreciate every feedback possible. 
 
