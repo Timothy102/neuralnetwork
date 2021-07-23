@@ -36,14 +36,27 @@ history := model.Train(dataX, dataY, numEpochs)
 ## How the Tensor Package Works
 
 Mimicking the Keras architecture, TensorGo works by implementing the unbounded interface method able to reproduce any form or value ensuring tensor scalability. This was accomplished using the `reflect` module in Golang. In order to initialize a tensor, you can either define a placeholder, the tensor constructor or avoid it all together by implementing the higher abstract level of the NNGo library for ML. 
+
+```
+
+#1
+cube := [][][]float64{}
+tensor := nn.NewTensor(cube)
+
+#2
+shape := []int{2, 3, 4}
+t := nn.Placeholder(shape)
+
+```
+
 ## Contact
 Please, feel free to reach out on LinkedIn, gmail.
 For more, check my medium article. 
-https://towardsdatascience.com/golang-as-the-new-machine-learning-powerforce-e1b74b10b83b
-https://www.linkedin.com/in/tim-cvetko-32842a1a6/
+`https://towardsdatascience.com/golang-as-the-new-machine-learning-powerforce-e1b74b10b83b
+https://www.linkedin.com/in/tim-cvetko-32842a1a6/ `
 
 >> cvetko.tim@gmail.com >>
 
 ## License
 
-see [LICENSE](LICENSE)
+Licensed under the MIT License [LICENSE](LICENSE)
