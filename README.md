@@ -37,8 +37,7 @@ history := model.Train(dataX, dataY, numEpochs)
 
 Mimicking the Keras architecture, TensorGo works by implementing the unbounded interface method able to reproduce any form or value ensuring tensor scalability. This was accomplished using the `reflect` module in Golang. In order to initialize a tensor, you can either define a placeholder, the tensor constructor or avoid it all together by implementing the higher abstract level of the NNGo library for ML. 
 
-```
-
+```go
 #1
 cube := [][][]float64{}
 tensor := nn.NewTensor(cube)
@@ -46,7 +45,6 @@ tensor := nn.NewTensor(cube)
 #2
 shape := []int{2, 3, 4}
 t := nn.Placeholder(shape)
-
 ```
 
 ## Contact
