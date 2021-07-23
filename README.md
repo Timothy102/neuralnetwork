@@ -10,7 +10,7 @@ go get -u github.com/timothy102/neuralnetwork
 import net "github.com/timothy102/neuralnetwork 
 
 ```
-## Usage
+## Getting Started
 
 If you seek to know more about the underlying mathematics behind this quite abstract architecture, check the matrix package at: github.com/timothy102/matrix . 
 You don't have to worry about it, but as every machine learning engineer knows, it comes in handy. 
@@ -32,10 +32,18 @@ model.Compile(RMSprop, CrossEntropy, Mae)
 history := model.Train(dataX, dataY, numEpochs)
 ```
 
+
+## How the Tensor Package Works
+
+Mimicking the Keras architecture, TensorGo works by implementing the unbounded interface method able to reproduce any form or value ensuring tensor scalability. This was accomplished using the `reflect` module in Golang. In order to initialize a tensor, you can either define a placeholder, the tensor constructor or avoid it all together by implementing the higher abstract level of the NNGo library for ML. 
 ## Contact
 Please, feel free to reach out on LinkedIn, gmail.
 For more, check my medium article. 
 https://towardsdatascience.com/golang-as-the-new-machine-learning-powerforce-e1b74b10b83b
 https://www.linkedin.com/in/tim-cvetko-32842a1a6/
 
-cvetko.tim@gmail.com
+>> cvetko.tim@gmail.com >>
+
+## License
+
+see [LICENSE](LICENSE)
