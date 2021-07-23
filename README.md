@@ -22,7 +22,7 @@ If you seek to know more about the underlying mathematics behind this quite abst
 You don't have to worry about it, but as every machine learning engineer knows, it comes in handy. 
 
 ```go
-model := Sequential([]Layer{
+model := nn.Sequential([]Layer{
   Conv2D(64,3, 1,Valid),
   MaxPooling2D(2),
   Conv2D(32,3, 1, DefaultPadding),
@@ -56,11 +56,12 @@ t := nn.Placeholder(shape)
 ## Contact
 Please, feel free to reach out on LinkedIn, gmail.
 For more, check my medium article. 
-`https://towardsdatascience.com/golang-as-the-new-machine-learning-powerforce-e1b74b10b83b
-https://www.linkedin.com/in/tim-cvetko-32842a1a6/ `
 
->> cvetko.tim@gmail.com >>
+`https://towardsdatascience.com/golang-as-the-new-machine-learning-powerforce-e1b74b10b83b`
+`https://www.linkedin.com/in/tim-cvetko-32842a1a6/ `
+
+>> cvetko.tim@gmail.com <<
 
 ## License
 
-Licensed under the MIT License [LICENSE](LICENSE)
+Licensed under the MIT [LICENSE](LICENSE)
