@@ -70,7 +70,7 @@ For more, check my medium article.
 
 `https://www.linkedin.com/in/tim-cvetko-32842a1a6/ `
 
->> cvetko.tim@gmail.com >>
+>> cvetko.tim@gmail.com 
 
 ## License
 
