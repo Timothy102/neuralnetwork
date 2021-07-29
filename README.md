@@ -6,7 +6,7 @@ Neuralnetwork is a hands-on approach to machine learning in Go. For those of you
 
 ## Inspiration Behind NNGo
 
-The primary goal for NNGo is to be a highly performant machine learning/graph computation-based framework. It should bring the appeal of Go (simple compilation and deployment process to the ML world. There is a long way ahead of us regarding deployment, efficiency and managebility, but baby steps, right? :)
+The primary goal for NNGo is to be a highly performant machine learning/graph computation-based framework. It should bring the appeal of Go (simple compilation and deployment process to the ML world). There is a long way ahead of us regarding deployment, efficiency and managebility, but baby steps, right? :)
 
 The secondary goal for NNGo is to provide a platform for exploration for non-standard deep-learning and neural network related things. Using our framework, you'll be able to expand the horizon of deep learning by exploring the highly abstract tool for extracting the most of the data as well as the algorithms. 
 
