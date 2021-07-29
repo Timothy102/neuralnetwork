@@ -13,7 +13,7 @@ The secondary goal for NNGo is to provide a platform for exploration for non-sta
 ## Installation
 ```go
 go get -u github.com/timothy102/neuralnetwork
-import net "github.com/timothy102/neuralnetwork 
+import nn "github.com/timothy102/neuralnetwork 
 
 ```
 ## Getting Started
@@ -52,6 +52,15 @@ tensor := nn.NewTensor(cube)
 shape := []int{2, 3, 4}
 t := nn.Placeholder(shape)
 ```
+
+### Try your first NNGo Program
+
+```
+result := nn.Add(tensor, t)
+res := tensor.Add(t)
+```
+
+Both solutions yield the same result 😃
 
 ## Contact
 Please, feel free to reach out on LinkedIn, gmail.
