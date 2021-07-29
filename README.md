@@ -55,7 +55,7 @@ t := nn.Placeholder(shape)
 
 ### Try your first NNGo Program
 
-```
+```go
 result := nn.Add(tensor, t)
 res := tensor.Add(t)
 ```
@@ -67,9 +67,10 @@ Please, feel free to reach out on LinkedIn, gmail.
 For more, check my medium article. 
 
 `https://towardsdatascience.com/golang-as-the-new-machine-learning-powerforce-e1b74b10b83b`
+
 `https://www.linkedin.com/in/tim-cvetko-32842a1a6/ `
 
->> cvetko.tim@gmail.com <<
+>> cvetko.tim@gmail.com >>
 
 ## License
 
