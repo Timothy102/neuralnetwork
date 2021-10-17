@@ -42,13 +42,12 @@ Both solutions yield the same result 😃
 
 ## Getting Started with the framework
 
-If you seek to know more about the underlying mathematics behind this quite abstract architecture, check the matrix package at: github.com/timothy102/matrix . 
-
+The NNGo environement is structured similarly to Keras' layers API. 
 ```go
 model := nn.Sequential([]Layer{
   Conv2D(64,3, 1,Valid),
   MaxPooling2D(2),
-  Conv2D(32,3, 1, DefaultPadding),
+  Conv2D(32,3, 1, DefaultPadding()),
   MaxPooling2D(2),
   Flatten(),
   Dense(128, Relu),
